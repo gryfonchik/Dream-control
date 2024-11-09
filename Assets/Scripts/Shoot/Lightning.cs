@@ -8,6 +8,7 @@ public class Lightning : MonoBehaviour
     public LayerMask targetLayer;              // Слой целей (например, врагов)
     public int numPoints = 30;                 // Количество точек молнии
     public float lightningDuration = 0.1f;     // Время, в течение которого молния полностью видима
+    public ParticleSystem lightningParticles;  // Система частиц для молнии
     private Vector3[] lightningPoints;         // Массив точек молнии
 
     void Start()
@@ -53,7 +54,7 @@ public class Lightning : MonoBehaviour
         }
 
         // Запуск корутины для плавного появления молнии
-        StartCoroutine(DisplayLightningWithDelay());
+        StartCoroutine(DisplayLightningWithParticles());
 
         // Если молния попала во врага, уничтожаем его
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
@@ -62,7 +63,7 @@ public class Lightning : MonoBehaviour
         }
     }
 
-    private IEnumerator DisplayLightningWithDelay()
+    private IEnumerator DisplayLightningWithParticles()
     {
         // Устанавливаем количество точек в LineRenderer
         lineRenderer.positionCount = 0;
@@ -72,6 +73,10 @@ public class Lightning : MonoBehaviour
         {
             lineRenderer.positionCount = i + 1; // Увеличиваем количество точек
             lineRenderer.SetPosition(i, lightningPoints[i]); // Устанавливаем текущую точку
+
+            // Эмитируем частицы на текущей точке молнии
+            EmitParticlesAtPoint(lightningPoints[i]);
+
             yield return new WaitForSeconds(lightningDuration / numPoints); // Задержка между появлением точек
         }
 
@@ -81,7 +86,17 @@ public class Lightning : MonoBehaviour
         // Отключаем LineRenderer после того, как молния погасла
         lineRenderer.positionCount = 0;
     }
+
+    private void EmitParticlesAtPoint(Vector3 position)
+    {
+        // Создаем и эмитируем частицы в заданной позиции
+        var emission = lightningParticles.emission;
+        lightningParticles.transform.position = position; // Перемещаем систему частиц в текущую точку молнии
+        lightningParticles.Emit(1); // Эмитируем одну частицу
+    }
 }
+
+
 
 
 
