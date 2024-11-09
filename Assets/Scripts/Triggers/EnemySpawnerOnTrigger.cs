@@ -37,7 +37,7 @@ public class EnemySpawnerOnTrigger : MonoBehaviour
             }
 
             // Передаем позицию триггера в скрипт движения врага
-            EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+            Worm_Move enemyMovement = enemy.GetComponent<Worm_Move>();
             if (enemyMovement != null)
             {
                 // Передаем позицию только по оси X

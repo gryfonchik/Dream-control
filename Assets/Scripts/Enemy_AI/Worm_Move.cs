@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Worm_Move : MonoBehaviour
 {
     public float moveSpeed = 2f; // Скорость перемещения
     public Transform target; // Точка, до которой нужно двигаться (триггер активатора)
