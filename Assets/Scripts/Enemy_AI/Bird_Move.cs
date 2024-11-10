@@ -54,7 +54,17 @@ public class Bird_Move : MonoBehaviour
         rb.velocity = new Vector2(-moveSpeed, rb.velocity.y); // Сохраняем текущее значение Y в скорости
 
         // Проверка на столкновение с игроком через Raycast от RaycastPoint
-        RaycastHit2D hit = Physics2D.Raycast(raycastPoint.position, Vector2.down, raycastLength, playerLayer);
+        
+        RaycastHit2D hit = new RaycastHit2D(); // Инициализация переменной перед использованием
+        
+        if (raycastPoint != null)
+        {
+             hit = Physics2D.Raycast(raycastPoint.position, Vector2.down, raycastLength, playerLayer);
+        }
+        else
+        {
+            Debug.LogWarning("raycastPoint is not assigned or has been destroyed.");
+        }
 
         // Отображение луча для отладки
         Debug.DrawRay(raycastPoint.position, Vector2.down * raycastLength, Color.red);

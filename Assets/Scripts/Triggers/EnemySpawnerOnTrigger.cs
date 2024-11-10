@@ -18,7 +18,6 @@ public class EnemySpawnerOnTrigger : MonoBehaviour
 
     private void SpawnEnemies()
     {
-
         foreach (Transform spawnPoint in spawnPoints)
         {
             // Создаём врага на каждой точке из массива spawnPoints
@@ -36,17 +35,21 @@ public class EnemySpawnerOnTrigger : MonoBehaviour
                 Debug.LogWarning("Animator не найден на префабе врага!");
             }
 
-            // Передаем позицию триггера в скрипт движения врага
-            Worm_Move enemyMovement = enemy.GetComponent<Worm_Move>();
-            if (enemyMovement != null)
+            // Проверяем название префаба, чтобы выполнить код только для Worm_Position
+            if (enemy.name == "Worm_Position")
             {
-                // Передаем позицию только по оси X
-                Vector3 triggerPosition = new Vector3(transform.position.x, enemyMovement.transform.position.y, enemyMovement.transform.position.z);
-                enemyMovement.target = transform; // Устанавливаем текущий объект (триггер) как цель для врага
-            }
-            else
-            {
-                Debug.LogWarning("EnemyMovement не найден на префабе врага!");
+                // Передаем позицию триггера в скрипт движения врага
+                Worm_Move enemyMovement = enemy.GetComponent<Worm_Move>();
+                if (enemyMovement != null)
+                {
+                    // Передаем позицию только по оси X
+                    Vector3 triggerPosition = new Vector3(transform.position.x, enemyMovement.transform.position.y, enemyMovement.transform.position.z);
+                    enemyMovement.target = transform; // Устанавливаем текущий объект (триггер) как цель для врага
+                }
+                else
+                {
+                    Debug.LogWarning("EnemyMovement не найден на префабе врага!");
+                }
             }
         }
     }
