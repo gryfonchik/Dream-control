@@ -224,7 +224,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kolo_new_0: 7955525906759486900
+      kolo_new_1: 488310644938493561
+      kolo_new_2: 9149962259250694959
+      kolo_new_3: 3789928397180200128
+      kolo_new_4: 4626397317806180482
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

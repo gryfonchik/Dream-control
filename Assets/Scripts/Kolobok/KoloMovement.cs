@@ -11,7 +11,7 @@ public class KoloMovement : CharacterBase
     public float dashCooldown = 3f;
     public float dashDuration = 0.2f;
 
-    private Animator animator;
+    // private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Vector2 movementInput;
     private float lastDashTime;
@@ -23,7 +23,7 @@ public class KoloMovement : CharacterBase
     {
         base.Awake();
         movementSpeed = defaultMovementSpeed;
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -85,11 +85,11 @@ public class KoloMovement : CharacterBase
 
         // Анимация и отзеркаливание
         bool isWalking = movementInput.x != 0;
-        animator.SetBool("isWalking", isWalking);
+        // animator.SetBool("isWalking", isWalking);
         
         if (isWalking)
         {
-            animator.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
+            // animator.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
             spriteRenderer.flipX = movementInput.x < 0;
         }
     }

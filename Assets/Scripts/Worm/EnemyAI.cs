@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform player; // Игрок, за которым будет следовать противник
+    private Transform player; // Игрок, за которым будет следовать противник
     public float moveSpeed = 2f; // Скорость перемещения противника
     private Vector3 targetPosition; // Целевая позиция для движения
 
@@ -18,6 +18,13 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
+        // Находим объект с тегом "Player"
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform; // Присваиваем его трансформ в переменную
+        }
+
         // Получаем Renderer врага (если это SpriteRenderer, это подойдет для 2D-игры)
         enemyRenderer = GetComponent<Renderer>();
 
@@ -51,7 +58,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         // Если враг стал видимым, начинаем движение
-        if (isVisible)
+        if (isVisible && player != null)
         {
             FollowPlayer();
         }
