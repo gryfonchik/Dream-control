@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6073726819692299843}
   m_Layer: 0
   m_Name: worm
-  m_TagString: Untagged
+  m_TagString: Worm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29db784cee7c3415b98db5387c4faa64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1817730294608263744}
   moveSpeed: 2
 --- !u!50 &8044413604476449979
 Rigidbody2D:
@@ -451,7 +450,7 @@ GameObject:
   - component: {fileID: 1772826348929238448}
   m_Layer: 0
   m_Name: Worm
-  m_TagString: Untagged
+  m_TagString: Worm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
