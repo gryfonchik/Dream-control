@@ -20,12 +20,10 @@ public class ZoneTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Получаем ссылку на скрипт CameraFollow на камере
         cameraFollowScript = mainCamera.GetComponent<CameraFollow>();
-        spawnCounts = new int[spawnPoints.Length]; // Инициализируем массив для отслеживания числа спавнов
-        availableSpawnIndices = new List<int>(); // Инициализируем список доступных спавнпоинтов
+        spawnCounts = new int[spawnPoints.Length];
+        availableSpawnIndices = new List<int>();
 
-        // Добавляем все индексы спавнпоинтов в список доступных
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             availableSpawnIndices.Add(i);
@@ -34,12 +32,11 @@ public class ZoneTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Если игрок входит в зону и триггер ещё не сработал, фиксируем камеру и запускаем спавн врагов
         if (other.CompareTag("Player") && !isCameraLocked && !hasTriggered)
         {
             LockCamera();
             StartSpawningEnemies();
-            hasTriggered = true; // Устанавливаем, что триггер сработал
+            hasTriggered = true;
         }
     }
 
@@ -47,19 +44,16 @@ public class ZoneTrigger : MonoBehaviour
     {
         isCameraLocked = true;
 
-        // Отключаем слежение и фиксируем камеру
         if (cameraFollowScript != null)
         {
             cameraFollowScript.enabled = false;
         }
 
-        // Позиционируем камеру на уровне триггера
         float cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
         Vector3 newCameraPosition = mainCamera.transform.position;
-        newCameraPosition.x = transform.position.x + cameraHalfWidth; // Меняем только X координату
+        newCameraPosition.x = transform.position.x + cameraHalfWidth;
         mainCamera.transform.position = newCameraPosition;
 
-        // Включаем коллайдеры у всех объектов с тегом "Boundary"
         EnableBoundaryColliders(true);
     }
 
@@ -67,16 +61,13 @@ public class ZoneTrigger : MonoBehaviour
     {
         isCameraLocked = false;
 
-        // Включаем слежение за игроком
         if (cameraFollowScript != null)
         {
             cameraFollowScript.enabled = true;
         }
 
-        // Отключаем коллайдеры у всех объектов с тегом "Boundary"
         EnableBoundaryColliders(false);
 
-        // Останавливаем спавн врагов
         if (spawnCoroutine != null)
         {
             StopCoroutine(spawnCoroutine);
@@ -85,7 +76,6 @@ public class ZoneTrigger : MonoBehaviour
 
     private void EnableBoundaryColliders(bool enable)
     {
-        // Находим все объекты с тегом "Boundary" и включаем/выключаем их коллайдеры
         GameObject[] boundaries = GameObject.FindGameObjectsWithTag("Boundary");
 
         foreach (var boundary in boundaries)
@@ -100,45 +90,52 @@ public class ZoneTrigger : MonoBehaviour
 
     private void StartSpawningEnemies()
     {
-        // Запускаем корутину для спавна врагов
         spawnCoroutine = StartCoroutine(SpawnEnemies());
     }
 
     private IEnumerator SpawnEnemies()
     {
-        while (availableSpawnIndices.Count > 0) // Продолжаем, пока есть доступные спавнпоинты
+        while (availableSpawnIndices.Count > 0)
         {
-            // Ждем интервал перед спавном
             yield return new WaitForSeconds(spawnInterval);
 
-            // Выбираем случайный доступный индекс спавнпоинта
             int randomIndex = availableSpawnIndices[Random.Range(0, availableSpawnIndices.Count)];
-
-            // Создаем врага на выбранной точке
             Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
-            spawnCounts[randomIndex]++; // Увеличиваем счетчик спавнов для данной точки
-            hasSpawned = true; // Устанавливаем, что враги заспавнены
+            spawnCounts[randomIndex]++;
+            hasSpawned = true;
 
-            // Если из текущего спавнпоинта заспавнилось два червя, убираем его из списка доступных
             if (spawnCounts[randomIndex] >= 2)
             {
                 availableSpawnIndices.Remove(randomIndex);
             }
         }
 
-        // После завершения спавна следим за червями на сцене
         StartCoroutine(CheckEnemiesAndUnlockCamera());
     }
 
     private IEnumerator CheckEnemiesAndUnlockCamera()
     {
-        // Ждем и проверяем, остались ли черви
-        while (GameObject.FindGameObjectsWithTag("Worm").Length > 0)
+        while (GetEnemyCountByName("Worm(Clone)") > 0)
         {
             yield return new WaitForSeconds(1f);
         }
 
-        // Если червей нет, разблокируем камеру
         UnlockCamera();
+    }
+
+    private int GetEnemyCountByName(string enemyName)
+    {
+        int count = 0;
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        foreach (var obj in allObjects)
+        {
+            if (obj.name == enemyName)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

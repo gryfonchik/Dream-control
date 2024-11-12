@@ -6,6 +6,7 @@ public class TriggerBunny : MonoBehaviour
     public Transform player; // Игрок
     public Camera mainCamera; // Камера
     public GameObject[] bunnyObjects; // Список объектов, которые нужно включить (например, объекты Bunny)
+    public GameObject commonBunny; // Префаб "заяц общий" уже на сцене
     private bool isCameraLocked = false; // Флаг фиксации камеры
     private CameraFollow cameraFollowScript; // Ссылка на скрипт CameraFollow
     private bool hasTriggered = false; // Флаг, чтобы действие выполнялось один раз
@@ -29,6 +30,7 @@ public class TriggerBunny : MonoBehaviour
             EnableBoundaryColliders(true); // Включаем коллайдеры Boundary
             StartCoroutine(EnableObjectsAfterDelay(1f)); // Включаем объекты через секунду
             hasTriggered = true; // Устанавливаем, что триггер сработал
+            StartCoroutine(CheckCommonBunnyAndUnlockCamera()); // Запускаем проверку удаления "заяц общий"
         }
     }
 
@@ -75,6 +77,36 @@ public class TriggerBunny : MonoBehaviour
             {
                 bunny.SetActive(true);
             }
+        }
+
+        // Включаем "заяц общий", если он не включен
+        if (commonBunny != null)
+        {
+            commonBunny.SetActive(true);
+        }
+    }
+
+    private IEnumerator CheckCommonBunnyAndUnlockCamera()
+    {
+        // Проверяем, пока объект "заяц общий" существует
+        while (commonBunny != null)
+        {
+            yield return new WaitForSeconds(1f); // Проверяем каждую секунду
+        }
+
+        // Когда "заяц общий" удалён, отключаем коллайдеры и разблокируем камеру
+        EnableBoundaryColliders(false);
+        UnlockCamera();
+    }
+
+    private void UnlockCamera()
+    {
+        isCameraLocked = false;
+
+        // Включаем слежение за игроком
+        if (cameraFollowScript != null)
+        {
+            cameraFollowScript.enabled = true;
         }
     }
 }
