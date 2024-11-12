@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 3225332042190310356}
   m_Layer: 0
   m_Name: "\u0437\u0430\u044F\u0446 \u043E\u0431\u0449\u0438\u0438\u0306"
-  m_TagString: Untagged
+  m_TagString: Bunny
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 9002912523759663566}
   m_Layer: 0
   m_Name: Bunny
-  m_TagString: Untagged
+  m_TagString: Bunny
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
