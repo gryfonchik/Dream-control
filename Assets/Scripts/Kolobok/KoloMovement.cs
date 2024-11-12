@@ -10,6 +10,8 @@ public class KoloMovement : CharacterBase
     public float dashSpeedMultiplier = 3f;
     public float dashCooldown = 3f;
     public float dashDuration = 0.2f;
+    public LayerMask groundLayer;
+    public float RaycastLenght = 0.1f;
 
     // private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -18,6 +20,7 @@ public class KoloMovement : CharacterBase
     private bool isDashing;
     private float dashEndTime;
     private bool isJumping;
+    private bool isGrounded;
 
     protected override void Awake()
     {
@@ -33,7 +36,7 @@ public class KoloMovement : CharacterBase
         movementInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         // Проверка начала прыжка
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             isJumping = true;
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
@@ -82,21 +85,12 @@ public class KoloMovement : CharacterBase
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
-
-        // Анимация и отзеркаливание
-        bool isWalking = movementInput.x != 0;
-        // animator.SetBool("isWalking", isWalking);
-        
-        if (isWalking)
-        {
-            // animator.SetFloat("Speed", Mathf.Abs(rb2d.velocity.x));
-            spriteRenderer.flipX = movementInput.x < 0;
-        }
+    
     }
-
-    private bool IsGrounded()
+    private void IsGrounded()
     {
-        // Реализуйте проверку на соприкосновение с землей (например, с помощью Raycast или коллайдеров)
-        return true; // Временно для примера
+        Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - collider2d.bounds.extents.y);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, RaycastLenght, groundLayer);
+        isGrounded = hit.collider != null;
     }
 }

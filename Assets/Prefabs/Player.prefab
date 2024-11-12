@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6546042765267183455}
   - component: {fileID: 1047950629505215065}
   - component: {fileID: 3847153130225833705}
+  - component: {fileID: 3847895477584168799}
   m_Layer: 0
   m_Name: kolo_new
   m_TagString: Player
@@ -203,6 +204,21 @@ MonoBehaviour:
     m_Bits: 256
   numPoints: 15
   lightningDuration: 0.1
+--- !u!114 &3847895477584168799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7302709621991379981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafc0bde1e703994fb3f8f58e92ead2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  damagePerHit: 1
+  damageCooldown: 1
 --- !u!1 &9059838158513500145
 GameObject:
   m_ObjectHideFlags: 0

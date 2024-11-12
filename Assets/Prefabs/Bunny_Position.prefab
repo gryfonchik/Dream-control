@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628103268932557719}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_12
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1935761534441860006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_19
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,9 +73,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5094941941795302784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,9 +105,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8351521721246092672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_20
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,9 +136,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5890126854382637402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_15
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,9 +168,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8609317313788502575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,9 +200,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840696996260925334}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_21
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,9 +231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5050567653463102426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_11
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,9 +262,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8978009018769457321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_18
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,9 +297,10 @@ GameObject:
   - component: {fileID: 2920390744714566613}
   - component: {fileID: 3314733726460485334}
   - component: {fileID: 3225332042190310356}
-  m_Layer: 0
-  m_Name: "\u0446 \u043E\u0431\u0449\u0438\u0438\u0306\u0438\u0438\u0306"
-  m_TagString: Bunny
+  - component: {fileID: 2593785142093019572}
+  m_Layer: 8
+  m_Name: Bunny
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,7 +315,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 51.407074, y: 51.407074, z: 51.407074}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6197729099122136279}
@@ -435,6 +436,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &2593785142093019572
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4385643450668780127}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.03989949, y: 0.012492344}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.192, y: 0.108}
+    newSize: {x: 0.192, y: 0.108}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.08500101, y: 0.064878}
+  m_EdgeRadius: 0
 --- !u!1 &4702598893835859992
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,9 +491,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4542896917688246098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_10
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -476,9 +523,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2689817107900443499}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_17
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,9 +554,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9178144262367769309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_14
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -538,9 +585,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8280204680006093985}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,9 +619,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5675663413735459745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_13
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,9 +651,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3632631826886326532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_6
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,9 +683,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7952106689332375542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_16
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -668,9 +715,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7297149720980394119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_5
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,9 +746,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6197729099122136279}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -734,9 +781,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4928607981360193801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_7
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,9 +813,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9002912523759663566}
-  m_Layer: 0
-  m_Name: Bunny
-  m_TagString: Bunny
+  m_Layer: 8
+  m_Name: Bunny_Position
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,7 +829,7 @@ Transform:
   m_GameObject: {fileID: 7564823883814673332}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 76.1, y: -6.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -798,9 +845,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9093825409682611617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_8
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -829,9 +876,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6572175573002543246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_9
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
