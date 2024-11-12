@@ -208,6 +208,7 @@ MonoBehaviour:
     m_Bits: 256
   numPoints: 15
   lightningDuration: 0.1
+  damageAmount: 1
 --- !u!114 &3847895477584168799
 MonoBehaviour:
   m_ObjectHideFlags: 0

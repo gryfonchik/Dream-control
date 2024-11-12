@@ -8,6 +8,7 @@ public class Lightning : MonoBehaviour
     public LayerMask targetLayer;              // Слой целей (например, врагов)
     public int numPoints = 30;                 // Количество точек молнии
     public float lightningDuration = 0.1f;     // Время, в течение которого молния полностью видима
+    public int damageAmount = 1;               // Урон, наносимый боссу молнией
     private Vector3[] lightningPoints;         // Массив точек молнии
 
     void Start()
@@ -37,7 +38,7 @@ public class Lightning : MonoBehaviour
             targetPosition = transform.position + (Vector3)direction.normalized * maxDistance;
         }
 
-        // Запускаем Raycast для проверки на столкновения с врагом на пути молнии
+        // Запускаем Raycast для проверки на столкновения с врагами на пути молнии
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, direction.magnitude, targetLayer);
 
         // Генерируем случайные промежуточные точки для молнии
@@ -55,10 +56,23 @@ public class Lightning : MonoBehaviour
         // Запуск корутины для плавного появления молнии
         StartCoroutine(DisplayLightningWithParticles());
 
-        // Если молния попала во врага, уничтожаем его
-        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        // Обработка столкновения молнии с врагами
+        if (hit.collider != null)
         {
-            Destroy(hit.collider.gameObject);
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                // Если это обычный враг, уничтожаем его
+                Destroy(hit.collider.gameObject);
+            }
+            else if (hit.collider.CompareTag("Boss"))
+            {
+                // Если это босс, наносим ему урон
+                EnemyHealth bossHealth = hit.collider.GetComponent<EnemyHealth>();
+                if (bossHealth != null)
+                {
+                    bossHealth.TakeDamage(damageAmount);
+                }
+            }
         }
     }
 
@@ -72,8 +86,6 @@ public class Lightning : MonoBehaviour
         {
             lineRenderer.positionCount = i + 1; // Увеличиваем количество точек
             lineRenderer.SetPosition(i, lightningPoints[i]); // Устанавливаем текущую точку
-
-
             yield return new WaitForSeconds(lightningDuration / numPoints); // Задержка между появлением точек
         }
 
@@ -84,6 +96,7 @@ public class Lightning : MonoBehaviour
         lineRenderer.positionCount = 0;
     }
 }
+
 
 
 
