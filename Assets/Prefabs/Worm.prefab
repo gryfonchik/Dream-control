@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5959359795832405917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_7
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375062781091399285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,9 +73,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4423509515873546242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_6
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,9 +111,9 @@ GameObject:
   - component: {fileID: 8044413604476449979}
   - component: {fileID: 3245973004841644389}
   - component: {fileID: 6073726819692299843}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: worm
-  m_TagString: Worm
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,9 +321,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7965766266247916227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,9 +353,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3245279217416038186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_8
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,9 +384,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2632845286804469724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -416,9 +416,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6878068039868534383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_5
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,9 +448,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772826348929238448}
-  m_Layer: 0
+  - component: {fileID: 8478123304894253672}
+  m_Layer: 8
   m_Name: Worm
-  m_TagString: Worm
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -471,6 +472,19 @@ Transform:
   - {fileID: 1817730294608263744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8478123304894253672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337129274280294394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f4f98fa15f57543b647bb6fc29b747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childObjects: []
 --- !u!1 &8615103733002841246
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,9 +494,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2724911827534590959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bone_3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
