@@ -7924,6 +7924,7 @@ MonoBehaviour:
   - {fileID: 923788406}
   - {fileID: 769933850}
   spawnInterval: 2
+  enemyCount: 2
 --- !u!61 &813222109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8974,6 +8975,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 506798816}
   spawnInterval: 2
+  enemyCount: 1
 --- !u!1 &1916909270
 GameObject:
   m_ObjectHideFlags: 0
