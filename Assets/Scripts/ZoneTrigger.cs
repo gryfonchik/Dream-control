@@ -14,6 +14,7 @@ public class ZoneTrigger : MonoBehaviour
     private bool hasTriggered = false; // Флаг, чтобы действие выполнялось один раз
     private Coroutine spawnCoroutine; // Ссылка на корутину спавна
     private bool hasSpawned = false; // Флаг, что враги уже заспавнены
+    public int enemyCount = 2; // Количество врагов
 
     private int[] spawnCounts; // Массив для отслеживания числа спавнов из каждой точки
     private List<int> availableSpawnIndices; // Список доступных индексов для спавна
@@ -104,7 +105,7 @@ public class ZoneTrigger : MonoBehaviour
             spawnCounts[randomIndex]++;
             hasSpawned = true;
 
-            if (spawnCounts[randomIndex] >= 2)
+            if (spawnCounts[randomIndex] >= enemyCount)
             {
                 availableSpawnIndices.Remove(randomIndex);
             }
