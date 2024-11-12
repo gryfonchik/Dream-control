@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Boundary
   - Bunny
+  - Back2
   layers:
   - Default
   - TransparentFX
