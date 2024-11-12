@@ -85,7 +85,8 @@ public class KoloMovement : CharacterBase
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
-    
+
+        IsGrounded();
     }
     private void IsGrounded()
     {

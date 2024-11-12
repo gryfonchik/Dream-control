@@ -185,6 +185,10 @@ MonoBehaviour:
   dashSpeedMultiplier: 3
   dashCooldown: 3
   dashDuration: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  RaycastLenght: 0.1
 --- !u!114 &3847153130225833705
 MonoBehaviour:
   m_ObjectHideFlags: 0
