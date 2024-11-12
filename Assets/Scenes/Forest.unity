@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7564823883814673332, guid: 2b6db5f24b79a4538a9502152bae1c96, type: 3}
       propertyPath: m_Name
-      value: Bunny
+      value: "\u0437\u0430\u044F\u0446 \u043E\u0431\u0449\u0438\u0438\u0306"
       objectReference: {fileID: 0}
     - target: {fileID: 7564823883814673332, guid: 2b6db5f24b79a4538a9502152bae1c96, type: 3}
       propertyPath: m_IsActive
@@ -7612,6 +7612,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1934337337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &666685712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4385643450668780127, guid: 2b6db5f24b79a4538a9502152bae1c96, type: 3}
+  m_PrefabInstance: {fileID: 321556406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766626566
 GameObject:
   m_ObjectHideFlags: 0
@@ -8772,6 +8777,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 183295406}
   mainCamera: {fileID: 1934337336}
+  bunnyObjects:
+  - {fileID: 666685712}
 --- !u!1 &1916909270
 GameObject:
   m_ObjectHideFlags: 0

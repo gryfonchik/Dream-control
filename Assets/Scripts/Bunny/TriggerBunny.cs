@@ -5,14 +5,19 @@ public class TriggerBunny : MonoBehaviour
 {
     public Transform player; // Игрок
     public Camera mainCamera; // Камера
+    public GameObject[] bunnyObjects; // Список объектов, которые нужно включить (например, объекты Bunny)
     private bool isCameraLocked = false; // Флаг фиксации камеры
     private CameraFollow cameraFollowScript; // Ссылка на скрипт CameraFollow
     private bool hasTriggered = false; // Флаг, чтобы действие выполнялось один раз
+    private BoxCollider2D zoneCollider; // Коллайдер триггера
 
     private void Start()
     {
         // Получаем ссылку на скрипт CameraFollow на камере
         cameraFollowScript = mainCamera.GetComponent<CameraFollow>();
+
+        // Получаем BoxCollider2D триггера
+        zoneCollider = GetComponent<BoxCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +27,7 @@ public class TriggerBunny : MonoBehaviour
         {
             LockCamera();
             EnableBoundaryColliders(true); // Включаем коллайдеры Boundary
-            StartCoroutine(EnableBunnyObjectsAfterDelay(1f)); // Включаем объекты Bunny через секунду
+            StartCoroutine(EnableObjectsAfterDelay(1f)); // Включаем объекты через секунду
             hasTriggered = true; // Устанавливаем, что триггер сработал
         }
     }
@@ -37,10 +42,10 @@ public class TriggerBunny : MonoBehaviour
             cameraFollowScript.enabled = false;
         }
 
-        // Позиционируем камеру на уровне триггера
-        float cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
+        // Располагаем камеру по левому нижнему углу коллайдера триггера
         Vector3 newCameraPosition = mainCamera.transform.position;
-        newCameraPosition.x = transform.position.x + cameraHalfWidth; // Меняем только X координату
+        newCameraPosition.x = zoneCollider.bounds.min.x + mainCamera.orthographicSize * mainCamera.aspect;
+        newCameraPosition.y = zoneCollider.bounds.min.y + mainCamera.orthographicSize;
         mainCamera.transform.position = newCameraPosition;
     }
 
@@ -59,16 +64,17 @@ public class TriggerBunny : MonoBehaviour
         }
     }
 
-    private IEnumerator EnableBunnyObjectsAfterDelay(float delay)
+    private IEnumerator EnableObjectsAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        // Находим все объекты с тегом "Bunny" и включаем их
-        GameObject[] bunnies = GameObject.FindGameObjectsWithTag("Bunny");
-
-        foreach (var bunny in bunnies)
+        // Включаем все объекты из массива bunnyObjects
+        foreach (var bunny in bunnyObjects)
         {
-            bunny.SetActive(true);
+            if (bunny != null)
+            {
+                bunny.SetActive(true);
+            }
         }
     }
 }
