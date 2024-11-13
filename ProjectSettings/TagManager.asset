@@ -9,6 +9,7 @@ TagManager:
   - Boundary
   - Bunny
   - Back2
+  - Boss
   layers:
   - Default
   - TransparentFX
