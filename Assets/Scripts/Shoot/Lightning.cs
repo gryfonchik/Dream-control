@@ -9,6 +9,8 @@ public class Lightning : MonoBehaviour
     public int numPoints = 30;                 // Количество точек молнии
     public float lightningDuration = 0.1f;     // Время, в течение которого молния полностью видима
     private Vector3[] lightningPoints;         // Массив точек молнии
+    private bool isOnCooldown = false;         // Флаг, который указывает, находится ли молния на кулдауне
+    private GameObject targetEnemy;            // Ссылка на врага, если молния в него попала
 
     void Start()
     {
@@ -17,7 +19,8 @@ public class Lightning : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // Запуск молнии по правой кнопке мыши
+        // Проверяем, что молния не на кулдауне, прежде чем активировать
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isOnCooldown)
         {
             FireLightning();
         }
@@ -25,6 +28,10 @@ public class Lightning : MonoBehaviour
 
     void FireLightning()
     {
+        // Устанавливаем флаг кулдауна в true
+        isOnCooldown = true;
+        targetEnemy = null;  // Сбрасываем ссылку на цель при новом запуске молнии
+
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0;
 
@@ -44,6 +51,12 @@ public class Lightning : MonoBehaviour
         lightningPoints[0] = transform.position;
         lightningPoints[numPoints - 1] = hit.collider != null ? hit.point : targetPosition;
 
+        // Если молния попала во врага, сохраняем ссылку на него
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        {
+            targetEnemy = hit.collider.gameObject;
+        }
+
         for (int i = 1; i < numPoints - 1; i++)
         {
             // Генерация случайных точек между началом и концом
@@ -54,12 +67,6 @@ public class Lightning : MonoBehaviour
 
         // Запуск корутины для плавного появления молнии
         StartCoroutine(DisplayLightningWithDelay());
-
-        // Если молния попала во врага, уничтожаем его
-        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-        {
-            Destroy(hit.collider.gameObject);
-        }
     }
 
     private IEnumerator DisplayLightningWithDelay()
@@ -70,18 +77,31 @@ public class Lightning : MonoBehaviour
         // Добавляем точки молнии поочередно с плавным появлением
         for (int i = 0; i < numPoints; i++)
         {
-            lineRenderer.positionCount = i + 1; // Увеличиваем количество точек
+            lineRenderer.positionCount = i + 1;            // Увеличиваем количество точек
             lineRenderer.SetPosition(i, lightningPoints[i]); // Устанавливаем текущую точку
             yield return new WaitForSeconds(lightningDuration / numPoints); // Задержка между появлением точек
         }
 
-        // После завершения корутины ждем указанное время перед исчезновением молнии
+        // Уничтожаем врага, если он был поражен и последняя точка уже появилась
+        if (targetEnemy != null)
+        {
+            Destroy(targetEnemy);
+        }
+
+        // Ждем указанное время перед исчезновением молнии
         yield return new WaitForSeconds(lightningDuration);
 
         // Отключаем LineRenderer после того, как молния погасла
         lineRenderer.positionCount = 0;
+
+        // Сбрасываем флаг кулдауна
+        isOnCooldown = false;
     }
 }
+
+
+
+
 
 
 

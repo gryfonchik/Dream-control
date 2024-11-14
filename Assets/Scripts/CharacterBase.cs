@@ -1,33 +1,31 @@
 using UnityEngine;
 
-// Базовый класс
 public class CharacterBase : MonoBehaviour
 {
-    protected Rigidbody2D rb2d;
-    protected Collider2D collider2d;
-    protected float movementSpeed;
 
-    // Метод Awake для автоматической инициализации
-    protected virtual void Awake()
+    [Header("Основные параметры физики")]
+    public float fallMultiplier = 2.5f; // Множитель гравитации для ускорения падения
+    public float lowJumpMultiplier = 2f; // Множитель гравитации для уменьшения высоты прыжка при быстром отпускании кнопки
+
+
+    protected Rigidbody2D rb;
+
+    protected virtual void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        collider2d = GetComponent<Collider2D>();
-
-        // Проверка наличия компонентов
-        if (rb2d == null)
-        {
-            Debug.LogError($"{name} требует компонент Rigidbody2D!");
-        }
-        if (collider2d == null)
-        {
-            Debug.LogError($"{name} требует компонент Collider2D!");
-        }
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Метод для установки скорости движения
-    public virtual void SetMovementSpeed(float speed)
+    protected void ApplyGravity()
     {
-        movementSpeed = speed;
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
 }
+
 
